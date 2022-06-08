@@ -2,6 +2,7 @@ import express from "express"
 import cors from 'cors'
 import db from "./database/db.js"
 import operationRoutes from './routes/routes.js'
+require('dotenv').config();
 
 const app = express()
 
@@ -11,13 +12,13 @@ app.use('/operations', operationRoutes)
 
 try {
     await db.authenticate()
-    console.log("Conexión exitosa a la db")
+    console.log("DB connected succesfully")
 } catch (error) {
-    console.log(`El error de conexión es: ${error}`)
+    console.log(`Conection error: ${error}`)
 }
 
 
 
-app.listen(8000, ()=>{
-    console.log('Server UP runing in http://localhost:8000/')
+app.listen( process.env.PORT || 8000, ()=>{
+    console.log('You are Connected!')
 })
