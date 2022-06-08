@@ -5,6 +5,7 @@ import CreateOperation from './components/CreateOperation';
 import EditOperation from './components/EditOperation';
 import Balance from './components/Balance';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 //Router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -32,7 +33,9 @@ function App() {
           <Route path='/edit/:id' element={<EditOperation/>}/>
         </Routes>
       </BrowserRouter>
-      
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 }

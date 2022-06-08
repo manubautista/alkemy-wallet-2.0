@@ -5,7 +5,8 @@
 
 
 body{
-  background: linear-gradient(to right, #2a292f, #2a292f);
+  background: linear-gradient(to right, rgb(33,37,41), rgb(33,37,41));
+  
 }
 
 

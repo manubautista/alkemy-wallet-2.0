@@ -4,24 +4,21 @@ const NavBar = () => {
 
 
     return(
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-        <i class="fa-brands fa-atlassian"></i> Alkemy Wallet
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container">
 
-        <div>
-        <ul class="navbar-nav ml-auto">
-            
-            <li>
-            <a class="nav-link" href="/create" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            New Operation
+            <a class="navbar-brand" href="/">
+            <i class="fa-brands fa-atlassian"></i> Alkemy Wallet
             </a>
-            </li>
-        </ul>
+
+            <div>
+                
+                <a className="btn btn-success btn-lg" href="/create" id="navbarDropdown">
+                <i class="fa-solid fa-plus"></i> New Operation
+                </a>
+                
+            </div>
         </div>
-    </div>
     </nav>
     )
 }
