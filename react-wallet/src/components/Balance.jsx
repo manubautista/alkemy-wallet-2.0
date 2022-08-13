@@ -1,28 +1,42 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-
-const URI = 'http://localhost:8000/operations/'
+import {db} from '../firebase'
+import Swal from 'sweetalert2'
 
 const Balance = ()=>{
     
     var bal = 0
-    // Procedimiento para traer todas las operaciones
+    
     const [operations, setOperation] = useState([])
     useEffect(()=>{
         getOperations()
     }, [])
+
+    // Procedimiento para traer todas las operaciones
     const getOperations = async () => {
-        const res = await axios.get(URI)
-        setOperation(res.data)
-    }
-    operations.map((operation) =>{
-        
-        if(operation.type === 'expense'){
-            bal -= operation.amount
-        }else{
-            bal += operation.amount
+        try {
+        const docs = [];
+        const querySnapshot = await db.collection('operations').get()
+            querySnapshot.forEach(doc=>{
+                docs.push({...doc.data(), id:doc.id})
+            })
+            setOperation(docs)
+            
+        } catch(error) {
+            console.log(error)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong, try again later...',
+              })
         }
-        
+    }
+    
+    operations.map((operation) =>{
+        if(operation.type === 'expense'){
+            bal -= parseInt(operation.amount)
+        } else {
+            bal += parseInt(operation.amount)
+        }        
     })
 
     
