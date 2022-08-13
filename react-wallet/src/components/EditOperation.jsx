@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import Swal from "sweetalert2";
+import Balance from "./Balance";
 
 const EditOperation = () => {
   const [concept, setConcept] = useState("");
@@ -11,6 +12,10 @@ const EditOperation = () => {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
+
+  useEffect(() => {
+    getOperationById();
+  }, []);
 
   // Procedimiento para actualizar
   const update = async (e) => {
@@ -41,10 +46,6 @@ const EditOperation = () => {
     }
   };
 
-  useEffect(() => {
-    getOperationById();
-  }, []);
-
   const getOperationById = async () => {
     try {
       const querySnapshot = await db.collection("operations").doc(id).get();
@@ -65,6 +66,9 @@ const EditOperation = () => {
 
   return (
     <div>
+      <div className="App-header">
+        <Balance />
+      </div>
       <form onSubmit={update} className="card mx-5">
         <h3 className="card-header">Edit Operation</h3>
         <div className="card-body">

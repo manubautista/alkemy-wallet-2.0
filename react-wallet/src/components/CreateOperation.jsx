@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 import Swal from "sweetalert2";
+import Balance from "./Balance";
 
 const CreateOperation = () => {
   const [concept, setConcept] = useState("");
@@ -35,6 +36,9 @@ const CreateOperation = () => {
 
   return (
     <div>
+      <div className="App-header">
+        <Balance />
+      </div>
       <form onSubmit={store} className="card mx-5">
         <h3 className="card-header">Create Operation</h3>
         <div className="card-body">
